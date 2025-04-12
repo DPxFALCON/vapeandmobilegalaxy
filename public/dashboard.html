@@ -8,9 +8,9 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
-      background: linear-gradient(135deg, #101010, #1e1e1e);
-      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #1b0036, #000c40);
       color: white;
+      font-family: 'Segoe UI', sans-serif;
       padding: 30px 16px;
       text-align: center;
     }
@@ -18,29 +18,33 @@
     h1 {
       font-size: 28px;
       font-weight: 600;
-      color: #00c6ff;
+      color: #ffffff;
       margin-bottom: 10px;
     }
 
-    .stamp-box {
-      background: rgba(0, 198, 255, 0.08);
-      border: 2px dashed #00c6ff;
-      padding: 16px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 500;
-      color: #00c6ff;
+    h2 {
+      font-size: 1.6rem;
+      color: #ccc;
+      margin-bottom: 8px;
     }
 
     .level-box {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid #6a0dad;
+      color: #c084fc;
       border-radius: 10px;
-      margin-bottom: 24px;
-      border: 1px solid #00c6ff44;
-      color: #00c6ff;
+      padding: 12px;
+      margin: 20px 0 12px;
       font-weight: 500;
+    }
+
+    .stamp-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px dashed #8e2de2;
+      padding: 16px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      color: #ffffff;
     }
 
     .stamps {
@@ -55,7 +59,7 @@
       width: 60px;
       height: 60px;
       border-radius: 12px;
-      background: #222;
+      background: #2d2d2d;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -63,31 +67,31 @@
       font-weight: bold;
       color: white;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
     }
 
     .stamp.active {
-      background: linear-gradient(145deg, #00c6ff, #0072ff);
+      background: linear-gradient(145deg, #8e2de2, #4a00e0);
     }
 
     .stamp:hover {
       transform: scale(1.1);
-      box-shadow: 0 8px 20px rgba(0, 198, 255, 0.6);
+      box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
     }
 
     .deal-box {
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.07);
       border-radius: 12px;
       padding: 18px 20px;
-      margin: 10px auto;
+      margin: 12px auto;
       max-width: 360px;
-      box-shadow: 0 0 12px rgba(0, 198, 255, 0.1);
-      color: #fff;
+      color: #eee;
+      box-shadow: 0 0 15px rgba(100, 0, 200, 0.2);
     }
 
     .deal-box h4 {
       margin-bottom: 8px;
-      color: #00c6ff;
+      color: #c084fc;
     }
 
     @media (max-width: 480px) {
@@ -95,6 +99,10 @@
         width: 50px;
         height: 50px;
         font-size: 20px;
+      }
+
+      .deal-box {
+        padding: 14px 16px;
       }
     }
   </style>
@@ -104,16 +112,20 @@
     <h1>Vape & Mobile Galaxy</h1>
     <h2>Welcome, <span id="username"></span></h2>
 
+    <!-- 🎖️ Level Display -->
     <div class="level-box">
       🎖️ Level: <span id="level">1</span>
     </div>
 
+    <!-- 🔥 Stamp Count -->
     <div class="stamp-box">
-      🔥 Stamps Collected: <span id="count">0</span> / 10
+      You have <span id="count">0</span> / 10 stamps
     </div>
 
+    <!-- 🔘 Stamp Circles -->
     <div class="stamps" id="stampsContainer"></div>
 
+    <!-- 💥 Deals -->
     <div class="deal-box">
       <h4>🔥 Deal</h4>
       ✅ 12 for £20 Liquid Juices
