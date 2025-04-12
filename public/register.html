@@ -27,17 +27,19 @@
       padding: 30px 24px;
       background: #0f0f0f;
       border-radius: 14px;
-      box-shadow: 0 0 20px rgba(0,198,255,0.1);
+      box-shadow: 0 0 20px rgba(128, 0, 255, 0.2);
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
     h1 {
-      font-size: 1.9rem;
-      font-weight: 600;
+      font-size: 2rem;
+      font-weight: bold;
       margin-bottom: 24px;
-      text-align: center;
+      background: linear-gradient(to right, #ff6fd8, #3813c2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     form {
@@ -61,18 +63,19 @@
     button {
       width: 100%;
       padding: 14px;
-      background-color: #0095f6;
+      background: linear-gradient(to right, #ff6fd8, #3813c2);
       border: none;
       border-radius: 10px;
       color: #fff;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     button:hover {
-      background-color: #007cd1;
+      transform: scale(1.03);
+      box-shadow: 0 0 12px rgba(255, 105, 255, 0.3);
     }
 
     .link {
@@ -82,7 +85,7 @@
     }
 
     .link a {
-      color: #0095f6;
+      color: #c084fc;
       text-decoration: none;
       font-weight: 500;
     }
