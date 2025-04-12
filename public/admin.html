@@ -7,11 +7,15 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
-      background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 20px;
+      background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
+      font-family: 'Segoe UI', sans-serif;
       color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h2 {
@@ -22,6 +26,8 @@
     }
 
     .cards-container {
+      width: 100%;
+      max-width: 600px;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -39,8 +45,7 @@
     .user-card input[type="number"] {
       width: 60px;
       padding: 6px;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin: 8px 0;
       border-radius: 6px;
       border: none;
       background: #222;
@@ -58,6 +63,7 @@
       font-size: 0.9rem;
       cursor: pointer;
       transition: all 0.3s ease;
+      margin-top: 10px;
     }
 
     .glow-btn:hover {
@@ -79,6 +85,10 @@
       .glow-btn {
         font-size: 0.85rem;
         padding: 5px 12px;
+      }
+
+      .cards-container {
+        padding: 0 10px;
       }
     }
   </style>
@@ -104,9 +114,9 @@
           card.innerHTML = `
             <strong>Username:</strong> ${user.username}<br>
             <strong>Phone:</strong> ${user.phone}<br><br>
-            <label>Stamps: 
+            <label>Stamps:
               <input type="number" min="0" max="10" value="${user.stamps}" id="stamps-${user.username}">
-            </label>
+            </label><br>
             <button class="glow-btn" onclick="updateStamps('${user.username}')">Save</button>
           `;
           container.appendChild(card);

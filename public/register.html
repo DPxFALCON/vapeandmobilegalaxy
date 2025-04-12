@@ -18,40 +18,45 @@
     }
 
     .container {
-      width: 100%;
+      width: 90%;
       max-width: 360px;
-      padding: 20px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
       background: #0f0f0f;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,198,255,0.1);
+      border-radius: 14px;
+      box-shadow: 0 0 20px rgba(0,198,255,0.15);
     }
 
     h1 {
       font-size: 2rem;
       font-weight: 600;
       margin-bottom: 20px;
-      font-family: 'Segoe UI', sans-serif;
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     input[type="text"],
     input[type="password"] {
       width: 100%;
       padding: 14px;
-      margin: 8px 0;
+      margin: 10px 0;
       border: none;
       border-radius: 10px;
       background-color: #222;
       color: #fff;
-      font-size: 15px;
+      font-size: 16px;
     }
 
     button {
       width: 100%;
       padding: 14px;
-      margin-top: 14px;
+      margin-top: 16px;
       background-color: #0095f6;
       border: none;
       border-radius: 10px;
@@ -67,7 +72,7 @@
     }
 
     .link {
-      margin-top: 18px;
+      margin-top: 24px;
       font-size: 0.9rem;
       text-align: center;
     }
@@ -83,16 +88,12 @@
     }
 
     @media (max-width: 480px) {
-      .container {
-        margin: 20px;
-        border-radius: 8px;
-      }
-
       h1 {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
       }
 
-      input, button {
+      input,
+      button {
         font-size: 15px;
       }
     }
@@ -101,7 +102,7 @@
 <body>
   <div class="container">
     <h1>Create Account</h1>
-    <form action="/register" method="POST" style="width: 100%;">
+    <form action="/register" method="POST">
       <input type="text" name="username" placeholder="Username" required />
       <input type="password" name="password" placeholder="Password" required />
       <input type="text" name="phone" placeholder="Phone Number" required />
