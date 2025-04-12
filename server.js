@@ -64,6 +64,13 @@ app.post('/adminLogin', (req, res) => {
     res.redirect('/admin.html?user=' + user.username);
 });
 
+// ✅ NEW: Get all customers
+app.get('/api/users', (req, res) => {
+    const users = loadUsers();
+    const customers = users.filter(u => u.role === 'customer');
+    res.json(customers);
+});
+
 // Get user
 app.get('/api/user/:username', (req, res) => {
     const users = loadUsers();
