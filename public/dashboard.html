@@ -7,17 +7,68 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: white;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #00c6ff;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      color: #ddd;
+    }
+
     .stamp-box {
       background: rgba(0, 198, 255, 0.08);
       border: 2px dashed #00c6ff;
       padding: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
       border-radius: 12px;
       font-size: 1rem;
       font-weight: 500;
       text-align: center;
       color: #00c6ff;
       backdrop-filter: blur(8px);
+    }
+
+    .progress-container {
+      width: 100%;
+      max-width: 320px;
+      height: 16px;
+      background: #222;
+      border-radius: 30px;
+      margin: 0 auto 30px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,198,255, 0.4);
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      transition: width 0.4s ease-in-out;
+    }
+
+    .progress-text {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #aaa;
     }
 
     .stamps {
@@ -81,15 +132,21 @@
     <h1>Vape & Mobile Galaxy</h1>
     <h2>Welcome, <span id="username"></span></h2>
 
-    <!-- ✅ Stamp Counter Box -->
+    <!-- ✅ Stamp Count -->
     <div class="stamp-box">
       🔥 Stamps Collected: <span id="count">0</span> / 10
     </div>
 
-    <!-- ✅ Stamp Display -->
+    <!-- ✅ Neon Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="stampProgress"></div>
+    </div>
+    <div class="progress-text"><span id="progressText">0</span>/10 stamps</div>
+
+    <!-- ✅ Stamps Display -->
     <div class="stamps" id="stampsContainer"></div>
 
-    <!-- ✅ Deals Section -->
+    <!-- ✅ Deal Boxes -->
     <div class="deal-box">
       <h4>🔥 Deal</h4>
       ✅ 12 for £20 Liquid Juices
@@ -117,6 +174,10 @@
       .then(res => res.json())
       .then(user => {
         document.getElementById("count").textContent = user.stamps;
+        document.getElementById("progressText").textContent = user.stamps;
+        const percent = (user.stamps / 10) * 100;
+        document.getElementById("stampProgress").style.width = percent + "%";
+
         const container = document.getElementById("stampsContainer");
 
         for (let i = 0; i < 10; i++) {
