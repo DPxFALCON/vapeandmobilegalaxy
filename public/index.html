@@ -13,7 +13,8 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #000;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
       display: flex;
       justify-content: center;
@@ -26,10 +27,10 @@
       max-width: 400px;
       width: 90%;
       padding: 30px 20px;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(0, 0, 0, 0.6);
       border-radius: 16px;
       backdrop-filter: blur(10px);
-      box-shadow: 0 0 25px rgba(0,198,255, 0.1);
+      box-shadow: 0 0 25px rgba(0, 198, 255, 0.15);
       z-index: 1;
     }
 
@@ -71,35 +72,19 @@
       box-shadow: 0 0 20px rgba(0,198,255,0.8);
     }
 
-    /* Background animation */
-    body::before {
-      content: "";
-      position: absolute;
-      inset: -145%;
-      rotate: -45deg;
-      background: #000000;
-      background-image: radial-gradient(4px 100px at 0px 235px, rgb(255, 140, 17), #0000),
-        radial-gradient(4px 100px at 300px 235px, rgb(255, 119, 0), #884e2800),
-        radial-gradient(1.5px 1.5px at 150px 117.5px, rgb(255, 144, 9) 100%, #0000 150%),
-        radial-gradient(4px 100px at 0px 252px, rgb(156, 14, 137), #0000),
-        radial-gradient(4px 100px at 300px 252px, rgb(23, 41, 206), #0000),
-        radial-gradient(1.5px 1.5px at 150px 126px, rgb(247, 102, 18) 100%, #0000 150%),
-        radial-gradient(4px 100px at 0px 150px, rgb(249, 121, 16), #0000),
-        radial-gradient(4px 100px at 300px 150px, rgb(255, 128, 18), #0000),
-        radial-gradient(1.5px 1.5px at 150px 75px, rgb(255, 116, 10) 100%, #0000 150%);
-      background-size: 300px 235px;
-      animation: hi 150s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes hi {
-      0% {
-        background-position: 0px 220px, 3px 220px, 151.5px 337.5px,
-          25px 24px, 28px 24px, 176.5px 150px, 50px 16px, 53px 16px, 201.5px 91px;
+    @media (max-width: 480px) {
+      .hero {
+        padding: 24px 16px;
+        border-radius: 12px;
       }
-      to {
-        background-position: 0px 6800px, 3px 6800px, 151.5px 6917.5px,
-          25px 13632px, 28px 13632px, 176.5px 13758px, 50px 5416px, 53px 5416px, 201.5px 5491px;
+
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .cta-group a {
+        font-size: 15px;
+        padding: 12px;
       }
     }
   </style>
