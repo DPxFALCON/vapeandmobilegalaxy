@@ -1,170 +1,188 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Your Loyalty Stamps</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 1rem;
-            color: #aaa;
-        }
-
-        .stamps {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .stamp {
-            width: 70px;
-            height: 70px;
-            border-radius: 10px;
-            background: #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            font-weight: bold;
-            color: white;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-            perspective: 1000px;
-            transform-style: preserve-3d;
-        }
-
-        .stamp.active {
-            background: linear-gradient(145deg, #00c6ff, #0072ff);
-        }
-
-        .stamp:hover {
-            transform: rotateY(10deg) rotateX(10deg) scale(1.1);
-            box-shadow: 0 10px 25px rgba(0, 198, 255, 0.6);
-        }
-    
-    @keyframes slideIn {
-        from { transform: translateY(50px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Loyalty Stamps</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px 16px;
+      text-align: center;
     }
 
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.02); }
-        100% { transform: scale(1); }
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #00c6ff;
+      margin-bottom: 10px;
     }
 
-    .offers.animated {
-        animation: slideIn 1s ease-out, pulse 3s ease-in-out infinite;
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
     }
-    
-/* Pattern Background from Uiverse.io by marsella_3472 */
-body::before {
-  content: "";
-  position: absolute;
-  inset: -145%;
-  rotate: -45deg;
-  background: #000000;
-  background-image: radial-gradient(4px 100px at 0px 235px, rgb(255, 140, 17), #0000),
-    radial-gradient(4px 100px at 300px 235px, rgb(255, 119, 0), #884e2800),
-    radial-gradient(1.5px 1.5px at 150px 117.5px, rgb(255, 144, 9) 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 252px, rgb(156, 14, 137), #0000),
-    radial-gradient(4px 100px at 300px 252px, rgb(23, 41, 206), #0000),
-    radial-gradient(1.5px 1.5px at 150px 126px, rgb(247, 102, 18) 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 150px, rgb(249, 121, 16), #0000),
-    radial-gradient(4px 100px at 300px 150px, rgb(255, 128, 18), #0000),
-    radial-gradient(1.5px 1.5px at 150px 75px, rgb(255, 116, 10) 100%, #0000 150%);
-  background-size: 300px 235px;
-  animation: hi 150s linear infinite;
-  z-index: -1;
-}
-@keyframes hi {
-  0% {
-    background-position: 0px 220px, 3px 220px, 151.5px 337.5px,
-      25px 24px, 28px 24px, 176.5px 150px, 50px 16px, 53px 16px, 201.5px 91px;
-  }
-  to {
-    background-position: 0px 6800px, 3px 6800px, 151.5px 6917.5px,
-      25px 13632px, 28px 13632px, 176.5px 13758px, 50px 5416px, 53px 5416px, 201.5px 5491px;
-  }
-}
 
-</style>
+    p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    .stamps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .stamp {
+      width: 65px;
+      height: 65px;
+      border-radius: 10px;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: bold;
+      color: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+
+    .stamp.active {
+      background: linear-gradient(145deg, #00c6ff, #0072ff);
+    }
+
+    .stamp:hover {
+      transform: rotateY(10deg) rotateX(10deg) scale(1.1);
+      box-shadow: 0 10px 25px rgba(0, 198, 255, 0.6);
+    }
+
+    .deals {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .deal-box {
+      background: #1c1c1c;
+      padding: 18px 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      max-width: 360px;
+      text-align: left;
+    }
+
+    .deal-box h4 {
+      margin: 0 0 10px;
+      color: #00c6ff;
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 22px; }
+      h2 { font-size: 1.3rem; }
+      .stamp {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+      }
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: -145%;
+      rotate: -45deg;
+      background: #000000;
+      background-image: radial-gradient(4px 100px at 0px 235px, rgb(255, 140, 17), #0000),
+        radial-gradient(4px 100px at 300px 235px, rgb(255, 119, 0), #884e2800),
+        radial-gradient(1.5px 1.5px at 150px 117.5px, rgb(255, 144, 9) 100%, #0000 150%),
+        radial-gradient(4px 100px at 0px 252px, rgb(156, 14, 137), #0000),
+        radial-gradient(4px 100px at 300px 252px, rgb(23, 41, 206), #0000),
+        radial-gradient(1.5px 1.5px at 150px 126px, rgb(247, 102, 18) 100%, #0000 150%),
+        radial-gradient(4px 100px at 0px 150px, rgb(249, 121, 16), #0000),
+        radial-gradient(4px 100px at 300px 150px, rgb(255, 128, 18), #0000),
+        radial-gradient(1.5px 1.5px at 150px 75px, rgb(255, 116, 10) 100%, #0000 150%);
+      background-size: 300px 235px;
+      animation: hi 150s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes hi {
+      0% {
+        background-position: 0px 220px, 3px 220px, 151.5px 337.5px,
+          25px 24px, 28px 24px, 176.5px 150px, 50px 16px, 53px 16px, 201.5px 91px;
+      }
+      to {
+        background-position: 0px 6800px, 3px 6800px, 151.5px 6917.5px,
+          25px 13632px, 28px 13632px, 176.5px 13758px, 50px 5416px, 53px 5416px, 201.5px 5491px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div style="text-align: center; padding-top: 20px;">
-        <h1 style="font-size: 28px; font-weight: 600; color: #00c6ff; letter-spacing: 1px;">Vape & Mobile Galaxy</h1>
-    </div>
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <h2>Welcome, <span id="username"></span></h2>
-    <p>You have <strong><span id="count">0</span></strong> loyalty stamps</p>
-    
-    <div class="stamps" id="stampsContainer"></div>
-    <div class="offers-wrap" style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin-top: 40px;"> >
-        </div>
-    <div style="background:#1c1c1c; padding: 18px 28px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.4); width: 360px;">
-        <h4 style="margin: 0 0 10px; color: #00c6ff;">🔥 Deal</h4>
-        ✅ 12 for £20 Liquid Juices
-    </div>
-    <div style="background:#1c1c1c; padding: 18px 28px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.4); width: 360px;">
-        <h4 style="margin: 0 0 10px; color: #00c6ff;">🔥 Deal</h4>
-        ✅ 1 Box 600 Puff Vape Disposable for £20
-    </div>
-    <div style="background:#1c1c1c; padding: 18px 28px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.4); width: 360px;">
-        <h4 style="margin: 0 0 10px; color: #00c6ff;">🔥 Deal</h4>
-        ✅ Upto 50% Off On New Devices
-    </div>
-    <div style="background:#1c1c1c; padding: 18px 28px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.4); width: 360px;">
-        <h4 style="margin: 0 0 10px; color: #00c6ff;">💬 Info</h4>
-        For more deals, visit our shop!
-    </div>
-    
-    </div>
-    
+  <h1>Vape & Mobile Galaxy</h1>
+  <h2>Welcome, <span id="username"></span></h2>
+  <p>You have <strong><span id="count">0</span></strong> loyalty stamps</p>
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const username = params.get('user');
-        document.getElementById("username").textContent = username;
+  <div class="stamps" id="stampsContainer"></div>
 
-        fetch("/api/user/" + username)
-            .then(res => res.json())
-            .then(user => {
-                document.getElementById("count").textContent = user.stamps;
-                const container = document.getElementById("stampsContainer");
-                for (let i = 0; i < 10; i++) {
-                    const div = document.createElement("div");
-                    div.classList.add("stamp");
-                    if (i < user.stamps) div.classList.add("active");
-                    div.textContent = i < user.stamps ? "✓" : "";
-                    container.appendChild(div);
-                }
+  <div class="deals">
+    <div class="deal-box">
+      <h4>🔥 Deal</h4>
+      ✅ 12 for £20 Liquid Juices
+    </div>
+    <div class="deal-box">
+      <h4>🔥 Deal</h4>
+      ✅ 1 Box 600 Puff Vape Disposable for £20
+    </div>
+    <div class="deal-box">
+      <h4>🔥 Deal</h4>
+      ✅ Upto 50% Off On New Devices
+    </div>
+    <div class="deal-box">
+      <h4>💬 Info</h4>
+      For more deals, visit our shop!
+    </div>
+  </div>
 
-                if (user.stamps === 10) {
-                    confetti({
-                        particleCount: 150,
-                        spread: 70,
-                        origin: { y: 0.6 }
-                    });
-                }
-            });
-    </script>
-</div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get('user');
+    document.getElementById("username").textContent = username;
+
+    fetch("/api/user/" + username)
+      .then(res => res.json())
+      .then(user => {
+        document.getElementById("count").textContent = user.stamps;
+        const container = document.getElementById("stampsContainer");
+        for (let i = 0; i < 10; i++) {
+          const div = document.createElement("div");
+          div.classList.add("stamp");
+          if (i < user.stamps) div.classList.add("active");
+          div.textContent = i < user.stamps ? "✓" : "";
+          container.appendChild(div);
+        }
+
+        if (user.stamps === 10) {
+          confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 }
+          });
+        }
+      });
+  </script>
 </body>
 </html>

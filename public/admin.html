@@ -1,141 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background: #121212;
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
-            padding: 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #121212;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+    .table-container {
+      overflow-x: auto;
+    }
 
-        th, td {
-            border: 1px solid #444;
-            padding: 12px;
-            text-align: center;
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
 
-        th {
-            background-color: #333;
-        }
+    th, td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.95rem;
+    }
 
-        input[type="number"] {
-            width: 60px;
-            padding: 5px;
-            border-radius: 5px;
-            border: none;
-        }
+    th {
+      background-color: #333;
+    }
 
-        .glow-btn {
-            background: #111;
-            border: 2px solid #00c6ff;
-            border-radius: 8px;
-            padding: 8px 16px;
-            color: #00c6ff;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+    input[type="number"] {
+      width: 60px;
+      padding: 6px;
+      border-radius: 5px;
+      border: none;
+      text-align: center;
+    }
 
-        .glow-btn:hover {
-            background-color: #00c6ff;
-            color: #111;
-            box-shadow: 0 0 15px #00c6ff, 0 0 30px #00c6ff66;
-        }
+    .glow-btn {
+      background: #111;
+      border: 2px solid #00c6ff;
+      border-radius: 8px;
+      padding: 6px 14px;
+      color: #00c6ff;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        body::before {
-            content: "";
-            position: absolute;
-            inset: -145%;
-            rotate: -45deg;
-            background: #000000;
-            background-image: radial-gradient(4px 100px at 0px 235px, rgb(255, 140, 17), #0000),
-                radial-gradient(4px 100px at 300px 235px, rgb(255, 119, 0), #884e2800),
-                radial-gradient(1.5px 1.5px at 150px 117.5px, rgb(255, 144, 9) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 252px, rgb(156, 14, 137), #0000),
-                radial-gradient(4px 100px at 300px 252px, rgb(23, 41, 206), #0000),
-                radial-gradient(1.5px 1.5px at 150px 126px, rgb(247, 102, 18) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 150px, rgb(249, 121, 16), #0000),
-                radial-gradient(4px 100px at 300px 150px, rgb(255, 128, 18), #0000),
-                radial-gradient(1.5px 1.5px at 150px 75px, rgb(255, 116, 10) 100%, #0000 150%);
-            background-size: 300px 235px;
-            animation: hi 150s linear infinite;
-            z-index: -1;
-        }
+    .glow-btn:hover {
+      background-color: #00c6ff;
+      color: #111;
+      box-shadow: 0 0 12px #00c6ff, 0 0 24px #00c6ff66;
+    }
 
-        @keyframes hi {
-            0% {
-                background-position: 0px 220px, 3px 220px, 151.5px 337.5px,
-                    25px 24px, 28px 24px, 176.5px 150px, 50px 16px, 53px 16px, 201.5px 91px;
-            }
-            to {
-                background-position: 0px 6800px, 3px 6800px, 151.5px 6917.5px,
-                    25px 13632px, 28px 13632px, 176.5px 13758px, 50px 5416px, 53px 5416px, 201.5px 5491px;
-            }
-        }
-    </style>
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      input[type="number"] {
+        width: 50px;
+        padding: 5px;
+      }
+
+      .glow-btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+      }
+
+      th, td {
+        font-size: 0.85rem;
+        padding: 8px;
+      }
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: -145%;
+      rotate: -45deg;
+      background: #000000;
+      background-image: radial-gradient(4px 100px at 0px 235px, rgb(255, 140, 17), #0000),
+        radial-gradient(4px 100px at 300px 235px, rgb(255, 119, 0), #884e2800),
+        radial-gradient(1.5px 1.5px at 150px 117.5px, rgb(255, 144, 9) 100%, #0000 150%),
+        radial-gradient(4px 100px at 0px 252px, rgb(156, 14, 137), #0000),
+        radial-gradient(4px 100px at 300px 252px, rgb(23, 41, 206), #0000),
+        radial-gradient(1.5px 1.5px at 150px 126px, rgb(247, 102, 18) 100%, #0000 150%),
+        radial-gradient(4px 100px at 0px 150px, rgb(249, 121, 16), #0000),
+        radial-gradient(4px 100px at 300px 150px, rgb(255, 128, 18), #0000),
+        radial-gradient(1.5px 1.5px at 150px 75px, rgb(255, 116, 10) 100%, #0000 150%);
+      background-size: 300px 235px;
+      animation: hi 150s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes hi {
+      0% {
+        background-position: 0px 220px, 3px 220px, 151.5px 337.5px,
+        25px 24px, 28px 24px, 176.5px 150px, 50px 16px, 53px 16px, 201.5px 91px;
+      }
+      to {
+        background-position: 0px 6800px, 3px 6800px, 151.5px 6917.5px,
+        25px 13632px, 28px 13632px, 176.5px 13758px, 50px 5416px, 53px 5416px, 201.5px 5491px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h2>Admin Panel - Manage Stamps</h2>
-    <table id="userTable">
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Phone</th>
-                <th>Stamps</th>
-                <th>Update</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
+  <h2>Admin Panel - Manage Stamps</h2>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Phone</th>
+          <th>Stamps</th>
+          <th>Update</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
     </table>
+  </div>
 
-    <script>
-        // ✅ Correctly load users from server route
-        fetch("/api/users")
-            .then(res => res.json())
-            .then(users => {
-                const tbody = document.querySelector("tbody");
-                users.forEach(user => {
-                    const row = document.createElement("tr");
+  <script>
+    fetch("/api/users")
+      .then(res => res.json())
+      .then(users => {
+        const tbody = document.querySelector("tbody");
 
-                    row.innerHTML = `
-                        <td>${user.username}</td>
-                        <td>${user.phone}</td>
-                        <td><input type="number" min="0" max="10" value="${user.stamps}" id="stamps-${user.username}"></td>
-                        <td><button class="glow-btn" onclick="updateStamps('${user.username}')">Save</button></td>
-                    `;
-
-                    tbody.appendChild(row);
-                });
-            });
-
-        function updateStamps(username) {
-            const newStamp = document.getElementById("stamps-" + username).value;
-            fetch("/api/updateStamps", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ username, stamps: parseInt(newStamp) })
-            })
-            .then(res => res.text())
-            .then(msg => alert(msg));
+        if (!users || users.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4">No customers found</td></tr>';
+          return;
         }
-    </script>
+
+        users.forEach(user => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${user.username}</td>
+            <td>${user.phone}</td>
+            <td><input type="number" min="0" max="10" value="${user.stamps}" id="stamps-${user.username}"></td>
+            <td><button class="glow-btn" onclick="updateStamps('${user.username}')">Save</button></td>
+          `;
+          tbody.appendChild(row);
+        });
+      })
+      .catch(err => {
+        console.error("Failed to fetch users:", err);
+        document.querySelector("tbody").innerHTML = `<tr><td colspan="4">Error loading users</td></tr>`;
+      });
+
+    function updateStamps(username) {
+      const newStamp = document.getElementById("stamps-" + username).value;
+      fetch("/api/updateStamps", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, stamps: parseInt(newStamp) })
+      })
+      .then(res => res.text())
+      .then(msg => alert(msg))
+      .catch(err => alert("Failed to update: " + err));
+    }
+  </script>
 </body>
 </html>

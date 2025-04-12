@@ -5,19 +5,5 @@
     "role": "admin",
     "phone": "0000000000",
     "stamps": 0
-  },
-  {
-    "username": "Dev",
-    "password": "123",
-    "phone": "07554519997",
-    "stamps": 1,
-    "role": "customer"
-  },
-  {
-    "username": "Prince",
-    "password": "123",
-    "phone": "07550491913",
-    "stamps": 0,
-    "role": "customer"
   }
 ]
