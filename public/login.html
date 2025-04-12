@@ -3,142 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Customer Login</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Login - Vape & Mobile Galaxy</title>
   <style>
     body {
-      background: radial-gradient(circle at center, #111, #000);
+      margin: 0;
+      padding: 0;
       font-family: 'Segoe UI', sans-serif;
+      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
-      padding: 20px;
       color: white;
     }
 
-    .form-container {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 30px 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0,198,255,0.3);
+    .container {
       width: 100%;
-      max-width: 400px;
-      backdrop-filter: blur(10px);
+      max-width: 360px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #0f0f0f;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,198,255,0.1);
     }
 
-    h2 {
-      text-align: center;
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
       margin-bottom: 20px;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-size: 1.7rem;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     input[type="text"],
     input[type="password"] {
       width: 100%;
       padding: 14px;
-      margin: 10px 0;
+      margin: 8px 0;
       border: none;
       border-radius: 10px;
-      background: #222;
-      color: white;
-      font-size: 16px;
+      background-color: #222;
+      color: #fff;
+      font-size: 15px;
     }
 
     button {
       width: 100%;
       padding: 14px;
+      margin-top: 14px;
+      background-color: #0095f6;
       border: none;
       border-radius: 10px;
-      background: linear-gradient(145deg, #00c6ff, #0072ff);
-      color: white;
+      color: #fff;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
-      margin-top: 10px;
+      transition: background 0.3s ease;
     }
 
     button:hover {
-      box-shadow: 0 0 20px #00c6ff;
-      transform: scale(1.05);
+      background-color: #007cd1;
     }
 
-    p {
-      text-align: center;
-      margin-top: 18px;
-      font-size: 0.95rem;
+    .link {
+      margin-top: 12px;
+      font-size: 0.9rem;
     }
 
-    a {
-      color: #00c6ff;
+    .link a {
+      color: #0095f6;
       text-decoration: none;
+      font-weight: 500;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 480px) {
-      .form-container {
-        padding: 24px 18px;
+      .container {
+        margin: 20px;
+        border-radius: 8px;
       }
 
-      h2 {
-        font-size: 1.4rem;
+      h1 {
+        font-size: 1.7rem;
       }
 
       input, button {
         font-size: 15px;
-        padding: 12px;
-      }
-
-      p {
-        font-size: 0.85rem;
-      }
-    }
-
-    body::before {
-      content: "";
-      position: absolute;
-      inset: -145%;
-      rotate: -45deg;
-      background: #000000;
-      background-image: radial-gradient(4px 100px at 0px 235px, rgb(255, 140, 17), #0000),
-        radial-gradient(4px 100px at 300px 235px, rgb(255, 119, 0), #884e2800),
-        radial-gradient(1.5px 1.5px at 150px 117.5px, rgb(255, 144, 9) 100%, #0000 150%),
-        radial-gradient(4px 100px at 0px 252px, rgb(156, 14, 137), #0000),
-        radial-gradient(4px 100px at 300px 252px, rgb(23, 41, 206), #0000),
-        radial-gradient(1.5px 1.5px at 150px 126px, rgb(247, 102, 18) 100%, #0000 150%),
-        radial-gradient(4px 100px at 0px 150px, rgb(249, 121, 16), #0000),
-        radial-gradient(4px 100px at 300px 150px, rgb(255, 128, 18), #0000),
-        radial-gradient(1.5px 1.5px at 150px 75px, rgb(255, 116, 10) 100%, #0000 150%);
-      background-size: 300px 235px;
-      animation: hi 150s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes hi {
-      0% {
-        background-position: 0px 220px, 3px 220px, 151.5px 337.5px,
-        25px 24px, 28px 24px, 176.5px 150px, 50px 16px, 53px 16px, 201.5px 91px;
-      }
-      to {
-        background-position: 0px 6800px, 3px 6800px, 151.5px 6917.5px,
-        25px 13632px, 28px 13632px, 176.5px 13758px, 50px 5416px, 53px 5416px, 201.5px 5491px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>Customer Login</h2>
-    <form action="/login" method="POST">
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="password" name="password" placeholder="Password" required>
-      <button type="submit">Login</button>
+  <div class="container">
+    <h1>Vape & Mobile</h1>
+    <form action="/login" method="POST" style="width: 100%;">
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Log In</button>
     </form>
-    <p>Don't have an account? <a href="register.html">Register</a></p>
+
+    <div class="link">
+      <a href="#">Forgot password?</a>
+    </div>
+
+    <div class="link" style="margin-top: 30px;">
+      Don't have an account? <a href="register.html">Sign up</a>
+    </div>
   </div>
 </body>
 </html>
