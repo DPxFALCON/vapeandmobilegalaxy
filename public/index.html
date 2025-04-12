@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vape & Mobile Galaxy</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at top left, #1a1a1a, #0a0a0a);
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .hero {
+            max-width: 700px;
+            padding: 20px;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .uiverse-btn {
+            padding: 14px 28px;
+            font-size: 16px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            color: white;
+            background: linear-gradient(145deg, #00c6ff, #0072ff);
+            box-shadow: 0 0 10px rgba(0,198,255,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .uiverse-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0,198,255,0.8);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    
+/* Pattern Background from Uiverse.io by marsella_3472 */
+body::before {
+  content: "";
+  position: absolute;
+  inset: -145%;
+  rotate: -45deg;
+  background: #000000;
+  background-image: radial-gradient(4px 100px at 0px 235px, rgb(255, 140, 17), #0000),
+    radial-gradient(4px 100px at 300px 235px, rgb(255, 119, 0), #884e2800),
+    radial-gradient(1.5px 1.5px at 150px 117.5px, rgb(255, 144, 9) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 252px, rgb(156, 14, 137), #0000),
+    radial-gradient(4px 100px at 300px 252px, rgb(23, 41, 206), #0000),
+    radial-gradient(1.5px 1.5px at 150px 126px, rgb(247, 102, 18) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 150px, rgb(249, 121, 16), #0000),
+    radial-gradient(4px 100px at 300px 150px, rgb(255, 128, 18), #0000),
+    radial-gradient(1.5px 1.5px at 150px 75px, rgb(255, 116, 10) 100%, #0000 150%);
+  background-size: 300px 235px;
+  animation: hi 150s linear infinite;
+  z-index: -1;
+}
+@keyframes hi {
+  0% {
+    background-position: 0px 220px, 3px 220px, 151.5px 337.5px,
+      25px 24px, 28px 24px, 176.5px 150px, 50px 16px, 53px 16px, 201.5px 91px;
+  }
+  to {
+    background-position: 0px 6800px, 3px 6800px, 151.5px 6917.5px,
+      25px 13632px, 28px 13632px, 176.5px 13758px, 50px 5416px, 53px 5416px, 201.5px 5491px;
+  }
+}
+
+</style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Vape & Mobile Galaxy</h1>
+        <p>Collect loyalty stamps. Redeem rewards. Vape with style.</p>
+        <div class="cta-group">
+            <a href="login.html" class="uiverse-btn">Customer Login</a>
+            <a href="register.html" class="uiverse-btn">Register</a>
+        </div>
+    </div>
+</body>
+</html>

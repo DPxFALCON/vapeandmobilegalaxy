@@ -1,0 +1,71 @@
+/* ===== MAIN BACKGROUND ONLY ===== */
+body {
+  background-image: url('background.jpg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* ===== EVERYTHING ELSE REMAINS EXACTLY THE SAME ===== */
+.container {
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 30px;
+  margin: 40px auto;
+  max-width: 800px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+  color: #3498db;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 2.2rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 8px;
+  background-color: #3498db;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-links {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+}
+
+/* ... (all other existing styles remain unchanged) ... */
+
+@media (max-width: 768px) {
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+}
