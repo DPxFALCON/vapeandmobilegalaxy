@@ -3,41 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Loyalty Stamps</title>
+  <title>Dashboard - Loyalty Stamps</title>
+  <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-      color: white;
-      text-align: center;
-      min-height: 100vh;
-    }
-
-    h1 {
-      font-size: 24px;
-      font-weight: 600;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      font-size: 20px;
-      margin-bottom: 6px;
-    }
-
-    p {
+    .stamp-box {
+      background: rgba(0, 198, 255, 0.08);
+      border: 2px dashed #00c6ff;
+      padding: 16px;
+      margin-bottom: 20px;
+      border-radius: 12px;
       font-size: 1rem;
-      color: #ccc;
-      margin-bottom: 30px;
+      font-weight: 500;
+      text-align: center;
+      color: #00c6ff;
+      backdrop-filter: blur(8px);
     }
 
     .stamps {
@@ -56,50 +36,38 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
       color: white;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     }
 
     .stamp.active {
       background: linear-gradient(145deg, #00c6ff, #0072ff);
-      box-shadow: 0 0 12px rgba(0,198,255,0.4);
     }
 
     .stamp:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 20px rgba(0,198,255,0.7);
-    }
-
-    .deals {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
+      box-shadow: 0 8px 20px rgba(0, 198, 255, 0.6);
     }
 
     .deal-box {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-      padding: 16px 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 198, 255, 0.1);
-      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 10px auto;
       max-width: 360px;
-      text-align: left;
+      box-shadow: 0 0 12px rgba(0, 198, 255, 0.1);
+      color: #fff;
     }
 
     .deal-box h4 {
-      margin: 0 0 10px;
+      margin-bottom: 8px;
       color: #00c6ff;
-      font-weight: 600;
     }
 
     @media (max-width: 480px) {
-      h1 { font-size: 20px; }
-      h2 { font-size: 1.1rem; }
       .stamp {
         width: 50px;
         height: 50px;
@@ -109,13 +77,19 @@
   </style>
 </head>
 <body>
-  <h1>Vape & Mobile Galaxy</h1>
-  <h2>Welcome, <span id="username"></span></h2>
-  <p>You have <strong><span id="count">0</span></strong> loyalty stamps</p>
+  <div class="container">
+    <h1>Vape & Mobile Galaxy</h1>
+    <h2>Welcome, <span id="username"></span></h2>
 
-  <div class="stamps" id="stampsContainer"></div>
+    <!-- ✅ Stamp Counter Box -->
+    <div class="stamp-box">
+      🔥 Stamps Collected: <span id="count">0</span> / 10
+    </div>
 
-  <div class="deals">
+    <!-- ✅ Stamp Display -->
+    <div class="stamps" id="stampsContainer"></div>
+
+    <!-- ✅ Deals Section -->
     <div class="deal-box">
       <h4>🔥 Deal</h4>
       ✅ 12 for £20 Liquid Juices
@@ -144,6 +118,7 @@
       .then(user => {
         document.getElementById("count").textContent = user.stamps;
         const container = document.getElementById("stampsContainer");
+
         for (let i = 0; i < 10; i++) {
           const div = document.createElement("div");
           div.classList.add("stamp");
@@ -154,8 +129,8 @@
 
         if (user.stamps === 10) {
           confetti({
-            particleCount: 150,
-            spread: 70,
+            particleCount: 180,
+            spread: 80,
             origin: { y: 0.6 }
           });
         }
