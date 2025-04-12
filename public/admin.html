@@ -55,18 +55,42 @@
       box-shadow: 0 0 10px rgba(142, 45, 226, 0.2);
     }
 
+    .stamp-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .plus-minus-btn {
+      padding: 8px 12px;
+      font-weight: bold;
+      background-color: #7b2cbf;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.2s ease;
+    }
+
+    .plus-minus-btn:hover {
+      background-color: #a259ff;
+    }
+
     .user-card input[type="number"] {
       width: 60px;
-      padding: 6px;
-      margin: 8px;
-      border-radius: 6px;
-      border: none;
-      background: #222;
+      padding: 10px;
+      font-size: 16px;
+      background: #111;
       color: white;
+      border: 1px solid #4a00e0;
+      border-radius: 10px;
       text-align: center;
     }
 
-    .level {
+    .user-card .level {
       margin-top: 10px;
       color: #c084fc;
       font-weight: 500;
@@ -91,22 +115,6 @@
       box-shadow: 0 0 12px #c084fc, 0 0 24px #c084fc66;
     }
 
-    .plus-minus-btn {
-      padding: 6px 10px;
-      margin: 0 4px;
-      font-weight: bold;
-      background-color: #4a00e0;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .plus-minus-btn:hover {
-      background-color: #7b2cbf;
-    }
-
     @media (max-width: 500px) {
       .user-card {
         font-size: 0.9rem;
@@ -119,10 +127,6 @@
 
       .search-box input {
         font-size: 14px;
-      }
-
-      .plus-minus-btn {
-        padding: 5px 8px;
       }
     }
   </style>
@@ -167,7 +171,7 @@
         card.innerHTML = `
           <strong>Username:</strong> ${user.username}<br>
           <strong>Phone:</strong> ${user.phone}<br><br>
-          <div>
+          <div class="stamp-controls">
             <button class="plus-minus-btn" onclick="adjustStamps('${user.username}', -1)">−</button>
             <input type="number" min="0" max="999" value="${user.stamps}" id="stamps-${user.username}">
             <button class="plus-minus-btn" onclick="adjustStamps('${user.username}', 1)">+</button>
@@ -177,6 +181,14 @@
         `;
         container.appendChild(card);
       });
+    }
+
+    function adjustStamps(username, change) {
+      const input = document.getElementById("stamps-" + username);
+      let current = parseInt(input.value);
+      current = isNaN(current) ? 0 : current;
+      const newValue = Math.max(0, current + change);
+      input.value = newValue;
     }
 
     function updateStamps(username) {
@@ -189,16 +201,9 @@
       .then(res => res.text())
       .then(msg => {
         alert(msg);
-        location.reload(); // Refresh to reflect level change
+        location.reload();
       })
       .catch(err => alert("Failed to update: " + err));
-    }
-
-    function adjustStamps(username, change) {
-      const input = document.getElementById("stamps-" + username);
-      let current = parseInt(input.value) || 0;
-      current = Math.max(0, current + change);
-      input.value = current;
     }
 
     document.getElementById("searchInput").addEventListener("input", function () {
