@@ -1,88 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Vape & Mobile Galaxy</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: url('genz-bg.jpg') no-repeat center center fixed;
-            background-size: cover;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <title>Vape & Mobile Galaxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
+    }
 
-        .hero {
-            max-width: 90%;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.6);
-            border-radius: 16px;
-            box-shadow: 0 0 15px rgba(0, 198, 255, 0.2);
-        }
+    .hero {
+      width: 90%;
+      max-width: 400px;
+      padding: 30px 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 198, 255, 0.15);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease;
+    }
 
-        .hero h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #00c6ff, #0072ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    .hero h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .hero p {
-            font-size: 1rem;
-            color: #ddd;
-            margin-bottom: 25px;
-        }
+    .hero p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 25px;
+    }
 
-        .cta-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-        }
+    .cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-        .uiverse-btn {
-            padding: 12px 24px;
-            font-size: 16px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            color: white;
-            background: linear-gradient(145deg, #00c6ff, #0072ff);
-            box-shadow: 0 0 10px rgba(0,198,255,0.5);
-            transition: all 0.3s ease;
-            width: 180px;
-        }
+    .uiverse-btn {
+      padding: 12px 0;
+      font-size: 16px;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      background: linear-gradient(145deg, #00c6ff, #0072ff);
+      box-shadow: 0 0 12px rgba(0, 198, 255, 0.4);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-        .uiverse-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0,198,255,0.8);
-        }
+    .uiverse-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 198, 255, 0.6);
+    }
 
-        @media (min-width: 600px) {
-            .cta-group {
-                flex-direction: row;
-                justify-content: center;
-            }
-        }
-    </style>
+    @keyframes fadeIn {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (min-width: 600px) {
+      .cta-group {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .uiverse-btn {
+        width: 160px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>Vape & Mobile Galaxy</h1>
-        <p>Collect loyalty stamps. Redeem rewards. Vape with style.</p>
-        <div class="cta-group">
-            <a href="login.html" class="uiverse-btn">Customer Login</a>
-            <a href="register.html" class="uiverse-btn">Register</a>
-        </div>
+  <div class="hero">
+    <h1>Vape & Mobile Galaxy</h1>
+    <p>Collect loyalty stamps. Redeem rewards. Vape with style.</p>
+    <div class="cta-group">
+      <a href="login.html" class="uiverse-btn">Customer Login</a>
+      <a href="register.html" class="uiverse-btn">Register</a>
     </div>
+  </div>
 </body>
 </html>
