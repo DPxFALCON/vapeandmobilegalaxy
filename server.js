@@ -1,14 +1,14 @@
-
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // For Render
 
+// Serve static files from public
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(__dirname)); // Serve static files
 
 const usersFile = path.join(__dirname, 'users.json');
 
@@ -21,6 +21,11 @@ function loadUsers() {
 function saveUsers(users) {
     fs.writeFileSync(usersFile, JSON.stringify(users, null, 2));
 }
+
+// ✅ Serve index.html on /
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Register
 app.post('/register', (req, res) => {
@@ -59,7 +64,7 @@ app.post('/adminLogin', (req, res) => {
     res.redirect('/admin.html?user=' + user.username);
 });
 
-// API to get user info
+// Get user
 app.get('/api/user/:username', (req, res) => {
     const users = loadUsers();
     const user = users.find(u => u.username === req.params.username);
@@ -67,7 +72,7 @@ app.get('/api/user/:username', (req, res) => {
     res.json(user);
 });
 
-// API to update stamp count
+// Update stamps
 app.post('/api/updateStamps', (req, res) => {
     const { username, stamps } = req.body;
     const users = loadUsers();
