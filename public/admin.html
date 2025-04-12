@@ -4,72 +4,48 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Panel</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
-      color: white;
       font-family: 'Segoe UI', sans-serif;
+      margin: 0;
       padding: 20px;
-      min-height: 100vh;
+      color: white;
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 20px;
       font-size: 1.8rem;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #00c6ff;
+      margin-bottom: 30px;
     }
 
-    .table-container {
-      overflow-x: auto;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 20px;
-      border-radius: 15px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 0 15px rgba(0,198,255,0.1);
+    .cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 600px;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    th, td {
-      padding: 12px 10px;
-      text-align: center;
+    .user-card {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 0 10px rgba(0, 198, 255, 0.1);
       font-size: 0.95rem;
     }
 
-    th {
-      background-color: #222;
-      color: #00c6ff;
-      font-weight: 600;
-    }
-
-    tr:nth-child(even) {
-      background-color: #181818;
-    }
-
-    tr:nth-child(odd) {
-      background-color: #101010;
-    }
-
-    input[type="number"] {
+    .user-card input[type="number"] {
       width: 60px;
-      padding: 8px;
-      border-radius: 8px;
+      padding: 6px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
       border: none;
-      background: #1c1c1c;
-      color: #fff;
+      background: #222;
+      color: white;
       text-align: center;
-      font-size: 0.9rem;
-      outline: 1px solid #00c6ff66;
     }
 
     .glow-btn {
@@ -90,69 +66,55 @@
       box-shadow: 0 0 12px #00c6ff, 0 0 24px #00c6ff66;
     }
 
-    @media (max-width: 600px) {
-      h2 {
-        font-size: 1.4rem;
+    @media (max-width: 500px) {
+      .user-card {
+        font-size: 0.9rem;
+        padding: 14px;
       }
 
-      input[type="number"] {
+      .user-card input {
         width: 50px;
-        padding: 6px;
       }
 
       .glow-btn {
-        padding: 5px 10px;
-        font-size: 0.8rem;
-      }
-
-      th, td {
         font-size: 0.85rem;
-        padding: 10px;
+        padding: 5px 12px;
       }
     }
   </style>
 </head>
 <body>
   <h2>Admin Panel - Manage Stamps</h2>
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>Phone</th>
-          <th>Stamps</th>
-          <th>Update</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+  <div class="cards-container" id="cardsContainer"></div>
 
   <script>
     fetch("/api/users")
       .then(res => res.json())
       .then(users => {
-        const tbody = document.querySelector("tbody");
+        const container = document.getElementById("cardsContainer");
 
         if (!users || users.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="4">No customers found</td></tr>';
+          container.innerHTML = '<p style="text-align:center;">No customers found</p>';
           return;
         }
 
         users.forEach(user => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${user.username}</td>
-            <td>${user.phone}</td>
-            <td><input type="number" min="0" max="10" value="${user.stamps}" id="stamps-${user.username}"></td>
-            <td><button class="glow-btn" onclick="updateStamps('${user.username}')">Save</button></td>
+          const card = document.createElement("div");
+          card.className = "user-card";
+          card.innerHTML = `
+            <strong>Username:</strong> ${user.username}<br>
+            <strong>Phone:</strong> ${user.phone}<br><br>
+            <label>Stamps: 
+              <input type="number" min="0" max="10" value="${user.stamps}" id="stamps-${user.username}">
+            </label>
+            <button class="glow-btn" onclick="updateStamps('${user.username}')">Save</button>
           `;
-          tbody.appendChild(row);
+          container.appendChild(card);
         });
       })
       .catch(err => {
         console.error("Failed to fetch users:", err);
-        document.querySelector("tbody").innerHTML = `<tr><td colspan="4">Error loading users</td></tr>`;
+        document.getElementById("cardsContainer").innerHTML = `<p>Error loading users</p>`;
       });
 
     function updateStamps(username) {
