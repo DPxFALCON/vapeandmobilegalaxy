@@ -4,18 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard - Loyalty Stamps</title>
-  <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
       margin: 0;
       padding: 20px;
       font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
       color: white;
       min-height: 100vh;
-      background: linear-gradient(to right, #141e30, #243b55); /* Royal Gen Z gradient */
-      background-attachment: fixed;
-      background-size: cover;
     }
 
     .container {
@@ -25,76 +22,49 @@
     }
 
     h1 {
-      font-size: 26px;
+      font-size: 2rem;
       color: #00c6ff;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
 
     h2 {
-      font-size: 20px;
-      font-weight: 400;
+      font-size: 1.3rem;
       margin-bottom: 20px;
-      color: #ddd;
+      font-weight: normal;
     }
 
     .stamp-box {
-      background: rgba(0, 198, 255, 0.08);
+      background: rgba(0, 198, 255, 0.1);
       border: 2px dashed #00c6ff;
       padding: 16px;
-      margin-bottom: 14px;
+      margin-bottom: 24px;
       border-radius: 12px;
       font-size: 1rem;
       font-weight: 500;
-      text-align: center;
       color: #00c6ff;
-      backdrop-filter: blur(8px);
-    }
-
-    .progress-container {
-      width: 100%;
-      max-width: 320px;
-      height: 16px;
-      background: #222;
-      border-radius: 30px;
-      margin: 0 auto 30px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,198,255, 0.4);
-    }
-
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      transition: width 0.4s ease-in-out;
-    }
-
-    .progress-text {
-      margin-top: 8px;
-      font-size: 0.9rem;
-      color: #aaa;
+      backdrop-filter: blur(6px);
     }
 
     .stamps {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 16px;
-      margin-bottom: 40px;
+      gap: 14px;
+      margin-bottom: 32px;
     }
 
     .stamp {
       width: 60px;
       height: 60px;
       border-radius: 12px;
-      background: #222;
+      background: #1a1a1a;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: bold;
       color: white;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
 
     .stamp.active {
@@ -102,30 +72,43 @@
     }
 
     .stamp:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 20px rgba(0, 198, 255, 0.6);
+      transform: scale(1.08);
+      box-shadow: 0 0 12px rgba(0, 198, 255, 0.5);
+      transition: all 0.3s ease;
     }
 
     .deal-box {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #00c6ff;
       border-radius: 12px;
-      padding: 18px 20px;
-      margin: 10px auto;
+      padding: 16px 18px;
+      margin: 12px auto;
       max-width: 360px;
-      box-shadow: 0 0 12px rgba(0, 198, 255, 0.1);
-      color: #fff;
+      color: #f2f2f2;
+      box-shadow: 0 0 10px rgba(0,198,255,0.05);
+      text-align: left;
     }
 
     .deal-box h4 {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: #00c6ff;
+      font-weight: 500;
     }
 
     @media (max-width: 480px) {
       .stamp {
         width: 50px;
         height: 50px;
-        font-size: 20px;
+        font-size: 18px;
+      }
+
+      .deal-box {
+        padding: 14px 16px;
+        font-size: 0.95rem;
+      }
+
+      .stamp-box {
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -135,21 +118,12 @@
     <h1>Vape & Mobile Galaxy</h1>
     <h2>Welcome, <span id="username"></span></h2>
 
-    <!-- ✅ Stamp Count -->
     <div class="stamp-box">
-      👑 Stamps Collected: <span id="count">0</span> / 10
+      🔥 Stamps Collected: <span id="count">0</span> / 10
     </div>
 
-    <!-- ✅ Neon Progress Bar -->
-    <div class="progress-container">
-      <div class="progress-bar" id="stampProgress"></div>
-    </div>
-    <div class="progress-text"><span id="progressText">0</span>/10 stamps</div>
-
-    <!-- ✅ Stamps Display -->
     <div class="stamps" id="stampsContainer"></div>
 
-    <!-- ✅ Deal Boxes -->
     <div class="deal-box">
       <h4>🔥 Deal</h4>
       ✅ 12 for £20 Liquid Juices
@@ -177,10 +151,6 @@
       .then(res => res.json())
       .then(user => {
         document.getElementById("count").textContent = user.stamps;
-        document.getElementById("progressText").textContent = user.stamps;
-        const percent = (user.stamps / 10) * 100;
-        document.getElementById("stampProgress").style.width = percent + "%";
-
         const container = document.getElementById("stampsContainer");
 
         for (let i = 0; i < 10; i++) {
