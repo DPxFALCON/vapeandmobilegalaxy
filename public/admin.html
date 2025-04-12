@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Panel</title>
+  <title>Admin Panel - Manage Stamps</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
       padding: 20px;
-      background: linear-gradient(135deg, #141e30, #243b55);
       font-family: 'Segoe UI', sans-serif;
-      color: white;
       min-height: 100vh;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -19,26 +20,25 @@
 
     h2 {
       text-align: center;
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: #00c6ff;
       margin-bottom: 20px;
     }
 
-    .search-bar {
+    .search-container {
       width: 100%;
       max-width: 400px;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
-    .search-bar input {
+    .search-container input {
       width: 100%;
-      padding: 12px 14px;
-      border-radius: 10px;
+      padding: 12px;
+      border-radius: 8px;
       border: none;
-      font-size: 16px;
-      outline: none;
-      background: #1a1a1a;
+      background: #111;
       color: white;
+      font-size: 1rem;
     }
 
     .cards-container {
@@ -89,33 +89,27 @@
     }
 
     @media (max-width: 500px) {
+      h2 {
+        font-size: 1.6rem;
+      }
+
       .user-card {
         font-size: 0.9rem;
         padding: 14px;
-      }
-
-      .user-card input {
-        width: 50px;
       }
 
       .glow-btn {
         font-size: 0.85rem;
         padding: 5px 12px;
       }
-
-      .cards-container {
-        padding: 0 10px;
-      }
     }
   </style>
 </head>
 <body>
   <h2>Admin Panel - Manage Stamps</h2>
-
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search by username or phone..." oninput="filterUsers()" />
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search by username or phone..." onkeyup="filterCards()">
   </div>
-
   <div class="cards-container" id="cardsContainer"></div>
 
   <script>
@@ -125,14 +119,14 @@
       .then(res => res.json())
       .then(users => {
         usersData = users;
-        renderUsers(users);
+        renderCards(users);
       })
       .catch(err => {
         console.error("Failed to fetch users:", err);
         document.getElementById("cardsContainer").innerHTML = `<p>Error loading users</p>`;
       });
 
-    function renderUsers(users) {
+    function renderCards(users) {
       const container = document.getElementById("cardsContainer");
       container.innerHTML = "";
 
@@ -170,12 +164,13 @@
       .catch(err => alert("Failed to update: " + err));
     }
 
-    function filterUsers() {
-      const query = document.getElementById("searchInput").value.toLowerCase();
-      const filtered = usersData.filter(user =>
-        user.username.toLowerCase().includes(query) || user.phone.includes(query)
+    function filterCards() {
+      const searchValue = document.getElementById("searchInput").value.toLowerCase();
+      const filteredUsers = usersData.filter(user =>
+        user.username.toLowerCase().includes(searchValue) ||
+        user.phone.toLowerCase().includes(searchValue)
       );
-      renderUsers(filtered);
+      renderCards(filteredUsers);
     }
   </script>
 </body>
