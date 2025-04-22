@@ -113,6 +113,19 @@ app.post('/api/updateStamps', async (req, res) => {
   res.send('Stamps updated');
 });
 
+// 🗑️ Delete user
+app.post('/api/deleteUser', async (req, res) => {
+  const { username } = req.body;
+  let users = await loadUsers();
+
+  const index = users.findIndex(u => u.username === username && u.role === 'customer');
+  if (index === -1) return res.status(404).send('User not found');
+
+  users.splice(index, 1);
+  await saveUsers(users);
+  res.send('User removed successfully');
+});
+
 // ▶️ Start server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
